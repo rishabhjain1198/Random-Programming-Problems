@@ -45,7 +45,7 @@ bool result(int x, int y, int z)
         }
         
         cout<<gcd;
-        //GCD FOUND!!!
+        //GCD FOUND
         
         if(z%gcd == 0 && z<=(x+y))
             return 1;
