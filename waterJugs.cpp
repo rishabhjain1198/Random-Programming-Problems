@@ -61,6 +61,7 @@ bool result(int x, int y, int z)
 int main() {
     
     int a,b,c;
+    cout<<"Please enter the volume of first jug, volume of second jug, and water to be obtained, respectively\n";
     cin>>a; cin>>b; cin>>c;
     
     cout<<result(a,b,c);
