@@ -4,9 +4,8 @@
 
 using namespace std;
 
-void traverseit(int right, int left, int pair, string &stackit, vector<string> &finalResult, int pos, string s)
+void traverseit(int right, int left, int pair, string stackit, vector<string> &finalResult, int pos, string s)
 {
-	cout<<" YOYO FUNC EXE"<<endl<<s.length()<<" "<<pos<<endl;
 	cout<<"LEFT: "<<left<<" RIGHT: "<<right<<" PAIR: "<<pair<<" POS: "<<pos<<endl;
 	//check if the recursion is at the end of its life
 	if(pos >= s.length())
@@ -24,6 +23,7 @@ void traverseit(int right, int left, int pair, string &stackit, vector<string> &
 			if(j)
 				{finalResult.push_back(stackit); cout<<"donezo"<<endl;}
 		}
+        return ;
 	}
 	//time to define the recursion
 	else
@@ -31,24 +31,26 @@ void traverseit(int right, int left, int pair, string &stackit, vector<string> &
 		if(s[pos] == '(')
 		{
 			if(left)
-				{traverseit(right, --left, pair, stackit, finalResult, ++pos, s);}
+				{traverseit(right, left-1, pair, stackit, finalResult, pos+1, s);}
 			stackit += '(';
-			cout<<" ADDED TOT EH FKIN STACK M8"<<endl;
-			traverseit(right, left, ++pair, stackit, finalResult, ++pos, s);
+			cout<<"Open parenthesis added"<<endl;
+			traverseit(right, left, pair+1, stackit, finalResult, pos+1, s);
 		}
 		
 		else if(s[pos] == ')')
 		{
 			if(right)
-				{traverseit(--right, left, pair, stackit, finalResult, ++pos, s);}
-			stackit += ')';
+				{traverseit(right-1, left, pair, stackit, finalResult, pos+1, s);}
 			if(pair)
-				{traverseit(right, left, --pair, stackit, finalResult, ++pos, s);}
+				{
+                    stackit += ')';
+                    cout<<"Closed parenthesis added"<<endl;
+                    traverseit(right, left, pair-1, stackit, finalResult, pos+1, s);}
 		}
 		else
 		{
 			stackit += s[pos];
-			traverseit(right, left, pair, stackit, finalResult, ++pos, s);
+			traverseit(right, left, pair, stackit, finalResult, pos+1, s);
 		}
 	}
 }
@@ -74,12 +76,10 @@ vector<string> removeInvalidParenthesis(string s)
 			if(left)
 			{
 				left--;
-				cout<<"LEFT DECRE"<<endl;
 			}
 			else
 			{
 				right++;
-				cout<<"RIGHT INCRE"<<endl;
 			}
 		}
 	}
@@ -99,6 +99,6 @@ vector<string> removeInvalidParenthesis(string s)
 
 int main()
 {
-	removeInvalidParenthesis("()())()");
+	removeInvalidParenthesis("())()())");
 	return 0;
 }
