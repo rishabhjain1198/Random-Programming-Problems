@@ -1,12 +1,12 @@
 #include<iostream>
-#include<vector>
 #include<cstring>
+#include<vector>
 
 using namespace std;
 
+
 void traverseit(int right, int left, int pair, string stackit, vector<string> &finalResult, int pos, string s)
 {
-	cout<<"LEFT: "<<left<<" RIGHT: "<<right<<" PAIR: "<<pair<<" POS: "<<pos<<endl;
 	//check if the recursion is at the end of its life
 	if(pos >= s.length())
 	{
@@ -21,7 +21,7 @@ void traverseit(int right, int left, int pair, string stackit, vector<string> &f
 			}
 			
 			if(j)
-				{finalResult.push_back(stackit); cout<<"donezo"<<endl;}
+				{finalResult.push_back(stackit);}
 		}
         return ;
 	}
@@ -33,7 +33,7 @@ void traverseit(int right, int left, int pair, string stackit, vector<string> &f
 			if(left)
 				{traverseit(right, left-1, pair, stackit, finalResult, pos+1, s);}
 			stackit += '(';
-			cout<<"Open parenthesis added"<<endl;
+			
 			traverseit(right, left, pair+1, stackit, finalResult, pos+1, s);
 		}
 		
@@ -44,7 +44,7 @@ void traverseit(int right, int left, int pair, string stackit, vector<string> &f
 			if(pair)
 				{
                     stackit += ')';
-                    cout<<"Closed parenthesis added"<<endl;
+              
                     traverseit(right, left, pair-1, stackit, finalResult, pos+1, s);}
 		}
 		else
@@ -55,7 +55,7 @@ void traverseit(int right, int left, int pair, string stackit, vector<string> &f
 	}
 }
 
-vector<string> removeInvalidParenthesis(string s)
+vector<string> removeInvalidParentheses(string s)
 {	
 	//Initialize the variables
 	vector<string> finalResult;
@@ -68,7 +68,7 @@ vector<string> removeInvalidParenthesis(string s)
 		if(s[i] == '(')
 		{
 			left++;
-			cout<<"LEFT INCREMENETED"<<endl;
+			
 		}
 		
 		else if(s[i] == ')')
@@ -87,18 +87,21 @@ vector<string> removeInvalidParenthesis(string s)
 	
 	traverseit(right, left,  pair, stackit, finalResult, pos, s);	
 	
-	cout<<endl;
-	for(int i = 0; i<finalResult.size(); i++)
-	{
-		cout<<finalResult[i]<<endl;
-	}	
+    for(int i=0; i<finalResult.size(); i++)
+    {
+        cout<<finalResult[i]<<endl;
+    }
+
 	return finalResult;
 
 }
 
-
 int main()
 {
-	removeInvalidParenthesis("())()())");
-	return 0;
+    string s;
+    cin>>s;
+
+    removeInvalidParentheses(s);
+
+    return 0;
 }
