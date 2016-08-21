@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void traverseit(int right, int left, int pair, string &stackit, vector<string> &finalResult, int pos, string &s)
+void traverseit(int right, int left, int pair, string &stackit, vector<string> &finalResult, int pos, string s)
 {
 	cout<<" YOYO FUNC EXE"<<endl<<s.length()<<" "<<pos<<endl;
 	cout<<"LEFT: "<<left<<" RIGHT: "<<right<<" PAIR: "<<pair<<" POS: "<<pos<<endl;
@@ -85,7 +85,7 @@ vector<string> removeInvalidParenthesis(string s)
 	}
 	//Scan of string complete, now to call traversal of the string for DFS
 	
-	traverseit(left, right, pair, stackit, finalResult, pos, s);	
+	traverseit(right, left,  pair, stackit, finalResult, pos, s);	
 	
 	cout<<endl;
 	for(int i = 0; i<finalResult.size(); i++)
