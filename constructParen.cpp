@@ -1,5 +1,5 @@
+
 #include<iostream>
-#include<cstring>
 #include<vector>
 
 using namespace std;
@@ -18,7 +18,6 @@ void makeNewParens(int leftPair, int rightPair, vector<string> &finalResult, int
        if(rightPair)
        {
             tempString += ')';
-            cout<<" CLOSE PAREN ADDED----"<<tempString<<endl;
             makeNewParens(leftPair, rightPair-1, finalResult, left-1, tempString);
             tempString.pop_back();
         }
@@ -26,7 +25,6 @@ void makeNewParens(int leftPair, int rightPair, vector<string> &finalResult, int
    if(leftPair)
    {
         tempString += '(';
-        cout<<" OPEN PAREN ADDED----"<<tempString<<endl;
         makeNewParens(leftPair-1, rightPair, finalResult, left+1, tempString);
    }
 }
@@ -43,7 +41,7 @@ int main()
     
     for(int i=0; i<finalResult.size(); i++)
     {
-        cout<<finalResult[i]<<endl;
+		cout << finalResult[i] << endl;
     }
     
     return 0;
