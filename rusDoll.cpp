@@ -128,7 +128,11 @@ int maxEnvelopes(vector<pair<int, int> > &envelopes)
 
 int main()
 {
-    vector<pair<int, int> > envelopes = [[5,4],[6,4],[6,7],[2,3]];
+    vector<pair<int, int> > envelopes;
+    envelopes.push_back(make_pair(5,4));
+    envelopes.push_back(make_pair(6,4));
+    envelopes.push_back(make_pair(6,7));
+    envelopes.push_back(make_pair(2,3));
     
 
     maxEnvelopes(envelopes);
