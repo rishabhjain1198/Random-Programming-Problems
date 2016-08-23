@@ -4,7 +4,7 @@ import bisect
 tempenvelopes = []
 dp = []
 inputting = 1
-while(inputting!=0):
+while(inputting):
     print("Please enter values for envelopes %2d" % (inputting))
     tempenvelopes.append(input().split(" "))
     print("Press 0 to exit or any other number to continue entering values")
