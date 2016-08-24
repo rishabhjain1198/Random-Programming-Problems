@@ -14,7 +14,7 @@ void reverseTraverseSquares(long long int Squares [], long long int sizeSquares,
 {
     if(pos>=sizeSquares)
         return ;
-    if(currentValue+prevValue < bmaxy[pos])
+    if(currentValue + prevValue <= bmaxy[pos])
         return ;
 
     currentValue += prevValue;
@@ -28,12 +28,6 @@ void newTraverseSquares(long long int Squares[], long long int sizeSquares, long
 {
     if(pos>=sizeSquares)
         return ;
-    if(pos<=k)
-    {
-        maxy[pos] = 0;
-        newTraverseSquares(Squares, sizeSquares, maxy, bmaxy, pos+1, k);
-        return ;
-    }
 
     maxy[pos] = Squares[pos] + bmaxy[pos] - bmaxy[k] - Squares[k];
     newTraverseSquares(Squares, sizeSquares, maxy, bmaxy, pos+1, k);
@@ -51,13 +45,14 @@ int main()
         bmaxy[i] = -999999999999999;
         cin>>Squares[i];
     }
+    maxy[k] = 0;
 
     reverseTraverseSquares(Squares, sizeSquares, bmaxy, 0, 0, 0);
 
-    newTraverseSquares(Squares, sizeSquares, maxy, bmaxy, 0, k);
+    newTraverseSquares(Squares, sizeSquares, maxy, bmaxy, k+1, k);
     
-    long long int maxx = 0;
-    for(long long int i = 0; i<sizeSquares; i++)
+    long long int maxx = -99999999999;
+    for(long long int i = k; i<sizeSquares; i++)
     {
         maxx = max(maxx, maxy[i] + bmaxy[i]);
     }
