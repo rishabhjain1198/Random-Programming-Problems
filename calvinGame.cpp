@@ -48,8 +48,11 @@ int main()
     int Squares [sizeSquares], maxy [sizeSquares], bmaxy[sizeSquares];
     for(int i = 0; i<sizeSquares; i++)
     {
-        maxy[i] = -999999999 ? i>k : maxy[i] = 0;
-        bmaxy[i] = -999999999;
+        if(i>k)
+            maxy[i] = -9999999;
+        else
+            maxy[i] = 0;
+        bmaxy[i] = -9999999;
         cin>>Squares[i];
     }
     //Input taken successfully and every element of maxy set to -9999
