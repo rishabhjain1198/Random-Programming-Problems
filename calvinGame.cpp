@@ -2,15 +2,15 @@
 
 using namespace std;
 
-void printit(int array [], int size)
+void printit(long long int array [], long long int size)
 {
-	for(int i =0; i<size; i++)
+	for(long long int i =0; i<size; i++)
 	{
 		cout<<array[i]<<" ";
 	}
 }
 
-void reverseTraverseSquares(int Squares [], int sizeSquares, int bmaxy [], int pos, int currentValue, int prevValue)
+void reverseTraverseSquares(long long int Squares [], long long int sizeSquares, long long int bmaxy [], long long int pos, long long int currentValue, long long int prevValue)
 {
     if(pos>=sizeSquares)
         return ;
@@ -25,47 +25,44 @@ void reverseTraverseSquares(int Squares [], int sizeSquares, int bmaxy [], int p
 }
 
 
-void traverseSquares(int Squares [], int sizeSquares, int maxy [], int pos, int currentValue)
+void traverseSquares(long long int Squares [], long long int sizeSquares, long long int maxy [], long long int pos, long long int currentValue)
 {
     if(pos>=sizeSquares)
         return ;
     if(currentValue+Squares[pos] < maxy[pos])
         return ;
 
-    maxy[pos] = currentValue + Squares[pos];
-    traverseSquares(Squares, sizeSquares, maxy, pos+1, currentValue + Squares[pos]);
-    traverseSquares(Squares, sizeSquares, maxy, pos+2, currentValue + Squares[pos]);
+    currentValue += Squares[pos];
+    maxy[pos] = currentValue;
+    traverseSquares(Squares, sizeSquares, maxy, pos+1, currentValue);
+    traverseSquares(Squares, sizeSquares, maxy, pos+2, currentValue);
 }
-
-
 
 int main()
 {
-    int sizeSquares, k;
+    long long int sizeSquares, k;
     cin>>sizeSquares; cin>>k; k--;
-    if(!sizeSquares)
+    if(sizeSquares<=0)
     {cout<<"0"; return 0;}
-    int Squares [sizeSquares], maxy [sizeSquares], bmaxy[sizeSquares];
-    for(int i = 0; i<sizeSquares; i++)
+    long long int Squares [sizeSquares], maxy [sizeSquares], bmaxy[sizeSquares];
+    for(long long int i = 0; i<sizeSquares; i++)
     {
         if(i>k)
-            maxy[i] = -9999999;
+            maxy[i] = -99999999999999;
         else
             maxy[i] = 0;
-        bmaxy[i] = -9999999;
+        bmaxy[i] = -999999999999999;
         cin>>Squares[i];
     }
     //Input taken successfully and every element of maxy set to -9999
-    bmaxy[0] = 0;
-
     //Updating maxy by traversing squares and implementing dp using maxy itself
     traverseSquares(Squares, sizeSquares,  maxy, k+1, 0);
     traverseSquares(Squares, sizeSquares,  maxy, k+2, 0);
 
     reverseTraverseSquares(Squares, sizeSquares, bmaxy, 0, 0, 0);
     
-    int maxx = 0;
-    for(int i = 0; i<sizeSquares; i++)
+    long long int maxx = 0;
+    for(long long int i = 0; i<sizeSquares; i++)
     {
         maxx = max(maxx, maxy[i] + bmaxy[i]);
     }
