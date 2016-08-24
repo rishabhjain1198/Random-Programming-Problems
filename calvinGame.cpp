@@ -2,6 +2,16 @@
 
 using namespace std;
 
+void printit(int array [], int size)
+{
+	cout<<endl<<"ARRAY IS  ";
+	for(int i =0; i<size; i++)
+	{
+		cout<<array[i]<<" ";
+	}
+	cout<<"    YA DUN"<<endl;
+}
+
 void traverseSquares(int Squares [], int sizeSquares, int maxy [], int pos, int currentValue)
 {
     if(pos>=sizeSquares)
@@ -10,6 +20,7 @@ void traverseSquares(int Squares [], int sizeSquares, int maxy [], int pos, int 
     if(currentValue+Squares[pos] <= maxy[pos])
         return ;
 
+    printit(maxy, sizeSquares);
     currentValue += Squares[pos];
     maxy[pos] = currentValue;
     traverseSquares(Squares, sizeSquares, maxy, pos+1, currentValue);
@@ -66,6 +77,8 @@ int main()
     int j;
     int maxx1 = findMax(maxy, sizeSquares, j);
     //start reverse traversal of update of maxy
+    if(maxx1<=0)
+	j=k;
     reverseTraverseSquares(Squares, sizeSquares, bmaxy, j-1, 0);
     reverseTraverseSquares(Squares, sizeSquares, bmaxy, j-2, 0);
 
