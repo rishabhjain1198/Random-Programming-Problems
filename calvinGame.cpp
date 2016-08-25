@@ -2,7 +2,7 @@
 
 using namespace std;
 
-void printit(long long int array [], long long int size)
+void printit(int array [], int size)
 {
 	for(long long int i =0; i<size; i++)
 	{
@@ -10,7 +10,7 @@ void printit(long long int array [], long long int size)
 	}
 }
 
-void reverseTraverseSquares(long long int Squares [], long long int sizeSquares, long long int bmaxy [], long long int pos, long long int currentValue, long long int prevValue)
+void reverseTraverseSquares(int Squares [], int sizeSquares, int bmaxy [], int pos, int currentValue, int prevValue)
 {
     if(pos>=sizeSquares)
         return ;
@@ -24,37 +24,39 @@ void reverseTraverseSquares(long long int Squares [], long long int sizeSquares,
 
 }
 
-void newTraverseSquares(long long int Squares[], long long int sizeSquares, long long int maxy [], long long int bmaxy [], long long int pos, long long int k)
+void newTraverseSquares(int Squares[], int sizeSquares, int bmaxy [], int pos, int k)
 {
     if(pos>=sizeSquares)
         return ;
 
-    maxy[pos] = Squares[pos] + bmaxy[pos] - bmaxy[k] - Squares[k];
-    newTraverseSquares(Squares, sizeSquares, maxy, bmaxy, pos+1, k);
+    bmaxy[pos] += Squares[pos] + bmaxy[pos] - bmaxy[k] - Squares[k];
+    newTraverseSquares(Squares, sizeSquares, bmaxy, pos+1, k);
 }
 
 int main()
 {
-    long long int sizeSquares, k;
+    int sizeSquares, k;
     cin>>sizeSquares; cin>>k; k--;
-    if(sizeSquares<=0)
+    if(sizeSquares<=0 || k<0)
     {cout<<"0"; return 0;}
-    long long int Squares [sizeSquares], maxy [sizeSquares], bmaxy[sizeSquares];
-    for(long long int i = 0; i<sizeSquares; i++)
+    int Squares [sizeSquares], bmaxy[sizeSquares];
+    for(int i = 0; i<sizeSquares; i++)
     {
-        bmaxy[i] = -999999999999999;
+        bmaxy[i] = -99999999;
         cin>>Squares[i];
     }
-    maxy[k] = 0;
-
-    reverseTraverseSquares(Squares, sizeSquares, bmaxy, 0, 0, 0);
-
-    newTraverseSquares(Squares, sizeSquares, maxy, bmaxy, k+1, k);
     
-    long long int maxx = -99999999999;
-    for(long long int i = k; i<sizeSquares; i++)
+    reverseTraverseSquares(Squares, sizeSquares, bmaxy, 0, 0, 0);
+    printit(bmaxy, sizeSquares);
+    cout<<endl;
+
+    newTraverseSquares(Squares, sizeSquares, bmaxy, k+1, k);
+    printit(bmaxy, sizeSquares);
+    
+    int maxx = -99999999;
+    for(int i = k; i<sizeSquares; i++)
     {
-        maxx = max(maxx, maxy[i] + bmaxy[i]);
+        maxx = max(maxx, bmaxy[i]);
     }
 
     cout<<maxx;
