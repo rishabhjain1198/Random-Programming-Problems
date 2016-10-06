@@ -50,7 +50,6 @@ int main()
             if(x>=rectangles[i].x1 && x<=rectangles[i].x2 && y>=rectangles[i].y1 && y<=rectangles[i].y2)
             {
                 counter++;
-                cout<<"rectangles: x1: "<<rectangles[i].x1<<" y1: "<<rectangles[i].y1<<"   x2: "<<rectangles[i].x2<<" y2: "<<rectangles[i].y2<<endl;
             }
        }
 
@@ -61,7 +60,6 @@ int main()
             if( (pow(double(x-circles[i].x),double(2)) + pow(double(y-circles[i].y),double(2)) )< pow(double(circles[i].r), double(2)))
             {
                 counter++;
-                cout<<endl<<"circles:  x: "<<circles[i].x<<" y: "<<circles[i].y<<" R: "<<circles[i].r;
             }
         }
 
