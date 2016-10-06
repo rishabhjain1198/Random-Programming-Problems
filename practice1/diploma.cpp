@@ -25,7 +25,10 @@ int main()
         }
     }
 
-    //COUT MINIMUM OF HEIGHT AND WIDTH!
+    if(width>height)
+	    cout<<width;
+    else
+	    cout<<height;
     
     return 0;
 }

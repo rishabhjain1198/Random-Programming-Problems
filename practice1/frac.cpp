@@ -31,7 +31,7 @@ int main()
     int n; cin>>n; vector<fraction> fractions;
     while(n--)
     {
-        int a; cin>>a; int b; cin>>b; double temp = double(a)/double(b); 
+        int a; cin>>a; int b; cin.ignore(); cin>>b; double temp = double(a)/double(b); 
         fraction tempp; tempp.num = a; tempp.den = b; tempp.value = temp;
         fractions.push_back(tempp);
     }
