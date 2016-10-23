@@ -1,3 +1,7 @@
+//Solution for Leetcode Problem: Generate Parenthesis
+//To view more of my competitive programming solutions, visit http://github.com/rishabhjain1198
+//
+//Input single positive integer to output all possible valid parenthesis strings of that number of pairs
 
 #include<iostream>
 #include<vector>
@@ -9,6 +13,7 @@ void makeNewParens(int leftPair, int rightPair, vector<string> &finalResult, int
     if(!leftPair && !rightPair)
     {
         finalResult.push_back(tempString);
+        cout<<tempString<<endl;
         return ;
     }
     
@@ -38,11 +43,13 @@ int main()
     string tempString = "(";
     makeNewParens(pair-1, pair, finalResult, 1, tempString);
 
-    
+    //Uncomment this block to display and confirm contents of finalResult vector
+    /*
     for(int i=0; i<finalResult.size(); i++)
     {
 		cout << finalResult[i] << endl;
     }
+    */
     
     return 0;
 }
