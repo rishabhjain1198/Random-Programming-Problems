@@ -1,5 +1,6 @@
 #include<iostream>
 #include<cctype>
+#include<string>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ bool hasCorrectSyntax(string pollData)
             case 's':
             if(i+1 < pollData.length())
             {
-                string temp = ""; temp+=pollData[i]; temp+=pollData[i+1];
+                string temp = ""; temp+=toupper(pollData[i]); temp+=toupper(pollData[i+1]);
                 tester = 'v'; i += 2;
                 if(!isValidUppercaseStateCode(temp))
                 {
@@ -52,12 +53,15 @@ bool hasCorrectSyntax(string pollData)
             case 'v':
             if(isdigit(pollData[i]))
             {
-                if(i+1 < pollData.length())
+		tester = 'p';
+		if(i+1 < pollData.length())
                 {
                     if(isdigit(pollData[i+1]))
                     {
                         i+=2;
                     }
+		    else
+			    i++;
                 }
                 else
                 {
@@ -75,15 +79,19 @@ bool hasCorrectSyntax(string pollData)
             if(isalpha(pollData[i]))
             {
                 i++;
+		tester = 's';
             }
             else
             {
-                breaker = false;
-                i = pollData.length();
+		breaker = false;
+		i = pollData.length();
             }
             break;
         }
     }
+
+    if(tester != 's')
+	    breaker = false;
 
     return breaker;
 }
@@ -91,11 +99,16 @@ bool hasCorrectSyntax(string pollData)
 int countVotes(string pollData, char party, int& voteCount)
 {
     if(!hasCorrectSyntax(pollData))
-        return 1;
-    else
-        cout<<"chala";
+	{ 
+	//	cout<<"1 returned"; 
+		return 1;
+	}
+
     if(!isalpha(party))
-        return 3;
+    { 
+	//	cout<<"3 returned"; 
+		return 3;
+    }
 
     int i = 2;
 
@@ -109,9 +122,10 @@ int countVotes(string pollData, char party, int& voteCount)
             string temp = ""; temp+= pollData[i]; temp+= pollData[i+1]; tempVotes = stoi(temp);
             if(tempVotes == 0)
             {
+	//	cout<<"2 returned";
                 return 2;
             }
-            else if(pollData[i+2] == party)
+            else if(toupper(pollData[i+2]) == toupper(party))
             {
                 votes += tempVotes;
             }
@@ -120,10 +134,13 @@ int countVotes(string pollData, char party, int& voteCount)
         else
         {
             if(pollData[i] == '0')
-                return 2;
+	    { 
+	//	cout<<"2 returned";
+		return 2;
+	    }
             else
             {
-                if(pollData[i+1] == party)
+                if(toupper(pollData[i+1]) == toupper(party))
                 {
                     string temp = ""; temp+=pollData[i]; votes += stoi(temp);
                 }

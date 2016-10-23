@@ -25,10 +25,7 @@ int main()
         }
     }
 
-    if(width>height)
-	    cout<<width;
-    else
-	    cout<<height;
+    cout<<width ? width>height: cout<<height;
     
     return 0;
 }

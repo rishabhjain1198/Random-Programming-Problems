@@ -9,6 +9,37 @@ class fraction
     int num; int den; double value;
 };
 
+//WRITING QUICKSORT FUNCTION
+void quickIt(vector<fraction> fractions, int left, int right)
+{ 
+	int i = left; int j = right; fraction tmp; 
+	int pivot = fractions[(left+right)/2].value;
+
+	while(i <= j)
+	{ 
+		while(fractions[i].value < pivot)
+		{ 
+			i++;
+		}
+		while(fractions[j].value>pivot)
+		{ 
+			j--;
+		}
+		if(i <= j)
+		{ 
+			tmp = fractions[i];
+			fractions[i] = fractions[j];
+			fractions[j] = tmp;
+			i++; j--;
+		}
+	}	
+
+	if(left < j)
+		quickIt(fractions, left, j);
+	if(i<right)
+		quickIt(fractions, right, i);
+}
+
 //SHOWCASE CONTENTS OF VECTOR
 void showFrac(vector<fraction> fractions)
 {
@@ -36,7 +67,7 @@ int main()
         fractions.push_back(tempp);
     }
     //INPUT RECIEVED SUCCESSFULLY
-
+/*
     for(int i = 0; i < fractions.size(); i++)
     {
         for(int j = 0; j < fractions.size() - i - 1; j++)
@@ -54,7 +85,8 @@ int main()
             }
         }
     }
-
+*/
+    quickIt(fractions, 0, fractions.size()-1);
     showFrac(fractions, "proper");
     return 0;
 }
