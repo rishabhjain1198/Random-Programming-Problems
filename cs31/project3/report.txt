@@ -1,0 +1,40 @@
+OBSTACLES
+------------------------------------------
+
+I had to figure out a way to accomodate both single digit and double digit votes.
+
+A consistent thing to keep in mind was to not let my program go out of bounds.
+
+Another part of the program which I needed to work on was to know which type of data I was expecting when checking correct syntax. I solved this by switching a tester variable.
+
+DESIGN
+------------------------------------------
+
+hasCorrectSyntax(pollData)
+    loop through string and test each chunk, data type of chunk is indicated by tester variable which is initially set to state
+        if tester is state
+            if chunk is invalid
+                break and return false
+        else if tester is votes
+            check for single or double digits
+            if digit isnt found
+                break and return false
+        else if tester is party
+            if current char is not alpha
+                break and return false
+        
+countVotes(pollData, party)
+    if !hasCorrectSyntax(pollData)
+        break and return false
+    if party is not alpha
+        break and return false
+
+    loop through polldata, only checking digits
+        if digit is found
+            find out if votes is single digit or double digit
+            if party is same as desired
+                add it tempvote to voteCount
+
+TEST DATA
+---------------------------------------------
+
