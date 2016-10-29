@@ -82,12 +82,10 @@ bool hasCorrectSyntax(string pollData)
             if(isalpha(pollData[i]))        //checks if party value is a letter
             {
                 i++;        //increases string counter by 1, since party is single letter
-                i++;
 		tester = 's';
             }
             else    //if party value is not a letter, it is invalid
             {
-
 	    	    breaker = false;
 		i = pollData.length();
             }
@@ -95,10 +93,9 @@ bool hasCorrectSyntax(string pollData)
         }
     }
 
-    return breaker;     //returns the boolean value
     if(tester != 's')
 	    breaker = false;
-
+   	
     return breaker;
 }
 
@@ -160,12 +157,13 @@ int countVotes(string pollData, char party, int& voteCount)
     return 0;
 }
 
-//main function for testing out the program
 /*
+//main function for testing out the program
 int main()
 {
     int voteCount = 0; char party; string inpit; cin>>inpit; cout<<"party: "; cin>>party; 
     countVotes(inpit, tolower(party), voteCount);
+    cout<<hasCorrectSyntax(inpit);
     cout<<voteCount;
     return 0;
 }
