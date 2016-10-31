@@ -97,7 +97,7 @@ bool hasCorrectSyntax(string pollData)
         }
     }
 
-    if(tester != 's')
+    if(tester != 's')        //if tester variable is not set to s, which means a party letter was missing at the end, the function will return false
 	    breaker = false;
    	
     return breaker;
