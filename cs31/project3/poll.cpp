@@ -152,11 +152,12 @@ int countVotes(string pollData, char party, int& voteCount)
     voteCount = votes;      //sets the voteCount variable to votes
     return 0;
 }
+
 /*
 //main function for testing out the program
 int main()
 {
-    int voteCount = 0; char party; string inpit; getline(cin, inpit); cout<<"party: "; cin>>party; 
+    int voteCount = 0; char party; string inpit; cin>>inpit; cout<<"party: "; cin>>party; 
     countVotes(inpit, tolower(party), voteCount);
     cout<<hasCorrectSyntax(inpit);
     cout<<voteCount;
