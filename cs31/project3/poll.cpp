@@ -26,6 +26,10 @@ bool isValidUppercaseStateCode(string stateCode)
 
 bool hasCorrectSyntax(string pollData)
 {
+	
+    if(pollData == "") 		//trivial case of empty poll string
+	    return true;
+
     char tester = 's'; //this tells us about type of data which is supposed to
                         //be there. s for state, v for votes and p for party
     bool breaker = true;
@@ -105,25 +109,17 @@ int countVotes(string pollData, char party, int& voteCount)
         return 1;
     if(!isalpha(party))         //checks if the party variable inputted is a valid alphabetical letter
         return 3;
-    if(!hasCorrectSyntax(pollData))
-    { 
-	//	cout<<"1 returned"; 
-		return 1;
-	}
 
-    if(!isalpha(party))
-    { 
-	//	cout<<"3 returned"; 
-		return 3;
-    }
+    if(pollData == "")		//trivial case of poll string being empty (0 state forecasts)
+	return 0;
 
-    int i = 2;
+    int i = 2;	//start checking from votes
 
     int votes = 0;
 
     while(i < pollData.length())       //loop to traverse the string
     {
-        if(isdigit(pollData[i+1]))
+        if(isdigit(pollData[i+1]))	//check if votes are double digits
         {
             int tempVotes;
             string temp = ""; temp+= pollData[i]; temp+= pollData[i+1]; tempVotes = stoi(temp); //adds the numbers to  temporary string and converts its contents to an integer
@@ -132,11 +128,11 @@ int countVotes(string pollData, char party, int& voteCount)
 	//	cout<<"2 returned";
                 return 2;
             }
-            else if(toupper(pollData[i+2]) == toupper(party))
+            else if(toupper(pollData[i+2]) == toupper(party))	//check if votes belong to desirable party
             {
                 votes += tempVotes;
             }
-            i+=5;   //increases string counter by 5
+            i+=5;   //increases string counter by 5 because state forecast had double digit votes
         }
         else
         {
@@ -148,7 +144,7 @@ int countVotes(string pollData, char party, int& voteCount)
                 {
                     string temp = ""; temp+=pollData[i]; votes += stoi(temp);
                 }
-                i+=4;   //increases string counter by 4
+                i+=4;   //increases string counter by 4, because state forecast had single digit votes
             }
         }
     }

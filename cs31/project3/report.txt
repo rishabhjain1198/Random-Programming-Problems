@@ -37,4 +37,19 @@ countVotes(pollData, party)
 
 TEST DATA
 ---------------------------------------------
+TX38RCA55DMs6rnY29dUT06L r //generic correct string to test, which contains letters of mixed case, as well as testing both single and double digit votes
+
+TX38CA55DMs6rnY29dUT06L r //testing what happens if party is not provided for a state forecast
+
+TX0rca23l r		//testing what happens if 0 votes are given in a state forecast
+
+TX384CA55DMs6rnY29dUT06L r //testing what happens if more than 2 digit number is given
+
+TX38RCA55DMs6rnY29dUT06 d //testing an incomplete string
+
+TX38RCA55DMs6rnY29dUT06L 5 //testing what happens when non-alpha party is given
+
+tx38 rca55d d	//testing what happens if a whitespace is given in the poll string
+
+ d	//testing what happens if empty poll string is given
 
