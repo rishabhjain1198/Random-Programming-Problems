@@ -43,7 +43,11 @@ TX38CA55DMs6rnY29dUT06L r //testing what happens if party is not provided for a 
 
 TX0rca23l r		//testing what happens if 0 votes are given in a state forecast
 
+ms25rCa00l l		//testing what happens if 0 votes are given in the form of double digits in a state forecast
+
 TX384CA55DMs6rnY29dUT06L r //testing what happens if more than 2 digit number is given
+
+ms09jtx45u h		//testing what happens if a party if given which is not present in the poll data string
 
 TX38RCA55DMs6rnY29dUT06 d //testing an incomplete string
 

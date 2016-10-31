@@ -33,7 +33,7 @@ bool hasCorrectSyntax(string pollData)
     char tester = 's'; //this tells us about type of data which is supposed to
                         //be there. s for state, v for votes and p for party
     bool breaker = true;
-    int i = 0;
+    int i = 0;		//start at the beginning of the string
     while(i < pollData.length())        //go through the polldata string
     {
         switch(tester)      //test what the value of the tester is
@@ -42,8 +42,8 @@ bool hasCorrectSyntax(string pollData)
             if(i+1 < pollData.length())     //checking if another character is available
             {
                 string temp = ""; temp+=toupper(pollData[i]); temp+=toupper(pollData[i+1]);
-                tester = 'v'; i += 2;
-                if(!isValidUppercaseStateCode(temp))
+                tester = 'v'; i += 2;		//switching all characters to upper case so they match
+                if(!isValidUppercaseStateCode(temp))	//checking if the state code is valid
                 {
                     breaker = false;
                     i = pollData.length();
@@ -125,7 +125,6 @@ int countVotes(string pollData, char party, int& voteCount)
             string temp = ""; temp+= pollData[i]; temp+= pollData[i+1]; tempVotes = stoi(temp); //adds the numbers to  temporary string and converts its contents to an integer
             if(tempVotes == 0)  //returns 2 in case votes are 0
             {
-	//	cout<<"2 returned";
                 return 2;
             }
             else if(toupper(pollData[i+2]) == toupper(party))	//check if votes belong to desirable party
@@ -137,12 +136,14 @@ int countVotes(string pollData, char party, int& voteCount)
         else
         {
             if(pollData[i] == '0')  //if votes are 0, returns 2
-                return 2;
+	    {
+		return 2;
+	    }
             else
             {
-                if(toupper(pollData[i+1]) == toupper(party))
+                if(toupper(pollData[i+1]) == toupper(party))		//in case party is desirable, add votes to variable
                 {
-                    string temp = ""; temp+=pollData[i]; votes += stoi(temp);
+                    string temp = ""; temp+=pollData[i]; votes += stoi(temp);		
                 }
                 i+=4;   //increases string counter by 4, because state forecast had single digit votes
             }
@@ -159,7 +160,6 @@ int main()
 {
     int voteCount = 0; char party; string inpit; cin>>inpit; cout<<"party: "; cin>>party; 
     countVotes(inpit, tolower(party), voteCount);
-    cout<<hasCorrectSyntax(inpit);
     cout<<voteCount;
     return 0;
 }
