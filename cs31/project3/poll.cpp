@@ -97,7 +97,7 @@ bool hasCorrectSyntax(string pollData)
         }
     }
 
-    if(tester != 's')
+    if(tester != 's')		//checking if tester is set to state in case party letter was missing at the end and the party switch block wasn't executed
 	    breaker = false;
    	
     return breaker;
