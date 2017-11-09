@@ -1,55 +1,31 @@
 #include<iostream>
-#include<algorithm>
-#include<vector>
 
 using namespace std;
 
 int n;
-void showClothes(vector<int> clothes)
+void quickSort(int clothes[n])
 {
-    cout<<endl;
-    for(int i = 0; i < n; i++)
-    {
-        cout<<clothes[i];
-    }
-}
-
-bool compar(int i, int j)
-{
-    return (i>j);
-}
-
-void decrementClothes(vector<int> &clothes, int position)
-{
-    for(int i = position+1; i<n; i++)
-    {
-        clothes[i]--;
-    }
+    
 }
 
 int main()
 {
-    cin >> n; int k;
-    vector<int> clothes;
+    cin >> n;
+    int clothes[n];
     for(int i = 0; i < n; i++)
     {
-        int temp;
-        cin >> temp;
-        clothes.push_back(temp);
+        cin >> clothes [i];
     }
-    cin>>k;
     //INPUT TAKEN SUCCESSFULLY
-    sort(clothes.begin(), clothes.begin()+n, compar);
-    int totalTime = 0; int position = 0;
 
-    while(clothes[position] > 0)
+    quickSort(clothes);
+
+    bool lastElementAndZero = false; int totalTime = 0;
+
+    while(!lastElementAndZero)
     {
-         decrementClothes(clothes, position);
-        clothes[position] -= k;
-            sort(clothes.begin(), clothes.begin()+n, compar);
-            totalTime++;
+        
     }
-    cout<<totalTime;
     return 0;
 }
 
